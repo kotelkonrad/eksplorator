@@ -1,0 +1,87 @@
+﻿<Window x:Class="Eksplorator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Eksplorator"
+        mc:Ignorable="d"
+        Title="Eksplorator Plików" Height="600" Width="1000">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!-- Splitter -->
+            
+        <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Center"/>
+        <!-- Left Column -->
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="5">
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox Name="leftDriveComboBox" SelectionChanged="LeftDriveComboBox_SelectionChanged" Width="100" Margin="5"/>
+                    <Button Content="Cofnij" Click="LeftBackButton_Click" Margin="5"/>
+                    <Button Content="Kopiuj do prawego" Click="CopyToRightButton_Click" Margin="5"/>
+                    <Button Content="Przenieś do prawego" Click="MoveToRightButton_Click" Margin="5"/>
+                    <Button Content="Usuń" Click="LeftDeleteButton_Click" Margin="5"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Name="leftPath" VerticalAlignment="Center" Margin="5"/>
+                </StackPanel>
+            </StackPanel>
+            <ListView Name="leftFileListView" Grid.Row="1" MouseDoubleClick="LeftFileListView_MouseDoubleClick" SelectionChanged="LeftFileListView_SelectionChanged" SelectionMode="Extended">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Nazwa" DisplayMemberBinding="{Binding Name}" Width="200"/>
+                        <GridViewColumn Header="Typ" DisplayMemberBinding="{Binding Type}" Width="100"/>
+                        <GridViewColumn Header="Rozmiar" DisplayMemberBinding="{Binding Size}" Width="100"/>
+                        <GridViewColumn Header="Data modyfikacji" DisplayMemberBinding="{Binding DateModified}" Width="200"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <ContentControl Name="leftFilePreview" Grid.Row="2" Margin="5"/>
+        </Grid>
+
+        <!-- Right Column -->
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="5">
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox Name="rightDriveComboBox" SelectionChanged="RightDriveComboBox_SelectionChanged" Width="100" Margin="5"/>
+                    <Button Content="Cofnij" Click="RightBackButton_Click" Margin="5"/>
+                    <Button Content="Kopiuj do lewego" Click="CopyToLeftButton_Click" Margin="5"/>
+                    <Button Content="Przenieś do lewego" Click="MoveToLeftButton_Click" Margin="5"/>
+                    <Button Content="Usuń" Click="RightDeleteButton_Click" Margin="5"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Name="rightPath" VerticalAlignment="Center" Margin="5"/>
+                </StackPanel>
+            </StackPanel>
+            <ListView Name="rightFileListView" Grid.Row="1" MouseDoubleClick="RightFileListView_MouseDoubleClick" SelectionChanged="RightFileListView_SelectionChanged" SelectionMode="Extended">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Nazwa" DisplayMemberBinding="{Binding Name}" Width="200"/>
+                        <GridViewColumn Header="Typ" DisplayMemberBinding="{Binding Type}" Width="100"/>
+                        <GridViewColumn Header="Rozmiar" DisplayMemberBinding="{Binding Size}" Width="100"/>
+                        <GridViewColumn Header="Data modyfikacji" DisplayMemberBinding="{Binding DateModified}" Width="200"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <ContentControl Name="rightFilePreview" Grid.Row="2" Margin="5"/>
+        </Grid>
+    </Grid>
+</Window>
